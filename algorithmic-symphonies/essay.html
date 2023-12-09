@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Algorithmic Symphonies</title>
+
+<style>
+* {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font: inherit;
+    font-size: 100%;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    vertical-align: baseline;
+}
+
+[title] {
+    border-bottom: 1px dotted;
+}
+
+html {
+    font-family: "Droid Sans", sans-serif;
+}
+
+body {
+    /*color: #2e3436;
+    background-color: #ffffff;*/
+    border: 0.25em double #2e3436;
+    margin: 3em auto;
+    padding: 9em 3em 3em;
+    position: relative;
+    width: 33em;  /* <http://webtypography.net/Rhythm_and_Proportion/Horizontal_Motion/2.1.2/> */
+}
+
+body::before,
+body::after {
+    display: block;
+    font-size: 3em;
+    height: 1.5em;
+    overflow: hidden;
+    position: absolute;
+    top: 1em;
+    width: 11em;
+}
+
+body::before {
+    text-align: right;
+    content: "𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚𝄚";
+}
+
+body::after {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAAAXNSR0IArs4c6QAAADdJREFUOMvt00ENACAMBMGtATThjJzAmil/Dg08SfoYCRO2D+DW2ieqYIynt0my2Z7MI8FaGCkupysHEkVP6dUAAAAASUVORK5CYII=");
+    background-size: 100%;
+    content: "𝚝&(𝚝≫𝟾) ➟ 𝄞♭ 𝅘𝅥♫𝅘𝅥𝅮 𝄀 𝅘𝅥♫𝅘𝅥𝅮 𝄂"; /*t&(t>>8)  ｔ＆（ｔ＞＞８）*/
+    font-family: monospace;
+}
+
+h1,
+blockquote :first-child::before,
+blockquote :last-child::after {
+    font-size: 3em;
+    line-height: 1;
+}
+
+h2,
+section > h1 {
+    font-size: 2em;
+    line-height: 0.75;
+    margin: 0.75em 0;
+}
+
+h3,
+section > section > h1
+{
+    font-size: 1.5em;
+    line-height: 1;
+    margin: 1em 0;
+}
+
+p,
+figure,
+figcaption {
+    display: block;
+    margin-top: 1.5em;
+}
+
+p + p {
+    text-indent: 1.5em;
+}
+
+p code {
+    display: inline;
+    margin-top: 0;
+}
+
+code,
+var {
+    font-family: "Droid Sans Mono", monospace;
+    white-space: pre-wrap;
+}
+
+figure {
+    counter-increment: figure;
+    overflow-x: hidden;
+}
+
+figure :first-child {
+    width: 100%;
+}
+
+figcaption::before {
+    content: 'Figure ' counter(figure, decimal) ':';
+    display: inline-block;
+    font-weight: bold;
+}
+
+blockquote,
+figcaption {
+    padding: 0 1.5em;
+    position: relative;
+}
+
+blockquote :first-child::before {
+    content: '„';
+    left: 0;
+    bottom: 0;
+}
+
+blockquote :last-child::after {
+    content: '“';
+    right: 0;
+    top: 0;
+}
+
+blockquote :first-child::before,
+blockquote :last-child::after {
+    display: block;
+    position: absolute;
+}
+
+a {
+    border-bottom: 1px solid;
+}
+
+a:link {
+    color: #204a87;
+    background-color: #ffffff;
+}
+
+a:hover {
+    color: #ffffff;
+    background-color: #3465a4;
+    outline: 1px solid #3465a4;
+}
+
+a:visited {
+    color: #5c3566;
+    background-color: #ffffff;
+}
+
+a:visited:hover {
+    color: #ffffff;
+    background-color: #75507b;
+    outline: 1px solid #75507b;
+}
+
+a:focus {
+    outline: 2px solid #f57900;
+}
+
+a:active {
+    color: #ce5c00;
+    background-color: #ffffff;
+    outline: none;
+}
+
+i {
+    font-style: italic;
+}
+
+strong {
+    font-weight: bold;
+}
+
+hr {
+    border: 0.125em solid #2e3436;
+    box-sizing: border-box;
+    display: block;
+    height: 0.25em;
+    margin-top: 1.25em;
+}
+</style>
+
+<hgroup>
+    <h1>Algorithmic Symphonies</h1>
+    <h2>Creating Music with a C Compiler</h2>
+</hgroup>
+
+<p>
+    The contemporary approach to creating music with a digital computer often involves a <a href="http://en.wikipedia.org/wiki/Software_synthesizer"><i>software synthesizer</i></a> – a program able to generate sound waves with distinct characteristics. To combine sounds, one can use <a href="http://en.wikipedia.org/wiki/Music_sequencer"><i>sequencer</i></a> or <a href="http://en.wikipedia.org/wiki/Tracker_(music_software)"><i>tracker</i></a> software able to process musical notation, yielding audio output utilizing the given samples.
+</p>
+<p>
+    Such applications' interfaces are diverse and indicative of their workflow: While <a href="http://en.wikipedia.org/wiki/Reaktor"><i>Reaktor</i></a> can both imitate the layout of a traditional physical audio workstation and enable you to edit directed graphs for sound synthesis (<a href="http://express.native-instruments.de/uploads/pics/Customize_or_Construct_Bausteine_4-5-5_CLICK-ENLARGE.png">screenshot</a>), creating a musical score in <a href="http://schismtracker.org/wiki/Schism%20Tracker"><i>Schism Tracker</i></a> is similar to editing with a hex editor (<a href="http://en.wikipedia.org/wiki/File:Schism-beyond.gif">screenshot</a>).
+</p>
+<p>
+    Digital audio production, however, is not limited to manual composition; music can also be generated. Employing specialized programming languages, mature applications like <a href="http://en.wikipedia.org/wiki/Csound"><i>Csound</i></a> or <a href="http://en.wikipedia.org/wiki/SuperCollider"><i>SuperCollider</i></a> deliver complex abstract working environments for this domain (<a href="http://en.wikipedia.org/wiki/File:SuperCollider_screenshot3.jpg">screenshot</a>).
+</p>
+<p>
+    While those specialized applications are certainly useful, they are not strictly necessary for audio synthesis and composition. In particular, it has been demonstrated that <a href="http://en.wikipedia.org/wiki/Chiptune">8bit music</a> can be obtained from <a href="http://countercomplex.blogspot.com/2011/10/algorithmic-symphonies-from-one-line-of.html">short programs written in the <i>C</i> programming language</a>, by interpreting their output as a description of a waveform.
+</p>
+
+<hr>
+
+<p>
+    The standard method to convert analog waveforms such as audio into digital data is <a href="http://en.wikipedia.org/wiki/Pulse-code_modulation">pulse-code modulation</a> (<abbr title="Pulse-Code Modulation">PCM</abbr>), basically storing the magnitude of a given signal at regular intervals. To interpret <abbr title="Pulse-Code Modulation">PCM</abbr> data, the procedure is applied in reverse, with the output filtered for artifacts.
+</p>
+
+<p>
+    With <abbr title="Pulse-Code Modulation">PCM</abbr>, the two main factors affecting audio quality are bit depth and sampling frequency: How many bits of information are available for storing signal magnitude directly effects <a href="http://en.wikipedia.org/wiki/Dynamic_range#Audio">dynamic range</a>; how often the signal is sampled dictates the <a href="http://en.wikipedia.org/wiki/Sampling_rate#Sampling_theorem">maximum frequency that can be stored</a>.
+</p>
+
+<p>
+    Consider the output of the following <i>C</i> program, interpreted with a bit depth of 8 and a sampling frequency of 8 kHz:
+</p>
+
+<figure id="simple-c-program">
+<code>#include &lt;stdio.h&gt;
+main() {
+int t;
+for(t=0;;t++)
+    putchar(t);
+}</code>
+    <figcaption>
+        A simple <i>C</i> program.
+    </figcaption>
+</figure>
+
+<p>
+    The program continuously increments <var>t</var>; the last 8 bits of <var>t</var> are output by the <a href="http://linux.die.net/man/3/putchar"><code>putchar()</code></a> function, rising to <code title="decimal 255">0xff</code>, then starting again at <code title="decimal 0">0x00</code>. This stream of repeatedly rising numbers yields a <a href="http://en.wikipedia.org/wiki/Sawtooth_wave">sawtooth wave</a>. Its frequency can be determined by dividing the sampling frequency (8000 Hz) through the wave period (2⁸ = 256); at 31.25 Hz, the tone is at the lower end of the human hearing range.
+</p>
+
+<figure id="sawtooth-graph">
+    <img src="sawtooth.svg">
+    <figcaption>
+        Sawtooth wave (31.25 Hz, ca. ⅛ s).
+    </figcaption>
+</figure>
+
+<figure id="sawtooth-audio">
+    <audio controls>
+        <source src="sawtooth.oga">
+        <source src="sawtooth.mp3">
+    </audio>
+    <figcaption>
+        Sawtooth wave (31.25 Hz, 5 s).
+    </figcaption>
+</figure>
+
+<hr>
+
+<p>
+    […] Through use of bitwise logical operators, those primitives can be combined and rearranged, effecting each other in several different ways.
+</p>
+
+<section id="further-reading">
+    <h1>Further Reading</h1>
+    <section id="tools">
+        <h1>Tools</h1>
+        <ul>
+            <li><a href="http://wurstcaptures.untergrund.net/music/"><i>JavaScript</i> synthesizer with visualisation</a></li>
+            <li><a href="https://gitorious.org/0xa/shiftop"><i>shiftop</i>, visualisation using <i>mplayer</i></a></li>
+            <li><a href="http://gcc.gnu.org/"><i>GCC, the GNU Compiler Collection</i></a></li>
+        </ul>
+    </section>
+
+    <section id="examples">
+        <h1>Examples</h1>
+        <ul>
+            <li><a href="http://www.youtube.com/watch?v=GtQdIYUtAHg">YouTube: <i>Experimental music from very short C programs</i></a></li>
+            <li><a href="http://www.youtube.com/watch?v=qlrs2Vorw2Y">YouTube: <i>Experimental one-line algorithmic music - the 2nd iteration</i></a></li>
+            <li><a href="http://www.youtube.com/watch?v=tCRPUv8V22o">YouTube: <i>Music from very short programs - the 3rd iteration</i></a></li>
+            <li><a href="http://www.youtube.com/watch?v=L9KLnN0GczI">YouTube: <i>Creating music in one line of C code</i></a></li>
+            <li><a href="http://0xa.kuri.mu/2011/10/09/bitop-videos/">Videos made with <i>shiftop</i></a></li>
+            <li><a href="https://github.com/kragen/viznut-music">GitHub: <i>kragen/viznut-music</i></a></li>
+            <li><a href="http://low.fi/~viznut/music_formula_collection.txt"><i>Collection of oneliner music formulas</i></a></li>
+        </ul>
+    </section>
+
+    <section id="discussion">
+        <h1>Discussion</h1>
+        <ul>
+            <li><a href="http://countercomplex.blogspot.com/2011/10/algorithmic-symphonies-from-one-line-of.html#comments"><i>countercomplex</i></a></li>
+            <li><a href="http://news.ycombinator.com/item?id=3063359"><i>Hacker News</i></a></li>
+            <li><a href="http://www.reddit.com/r/programming/comments/kyj77/algorithmic_symphonies_from_one_line_of_code_how/"><i>reddit</i></a></li>
+            <li><a href="http://www.reddit.com/r/tinycode/comments/l0clo/algorithmic_symphonies_from_one_line_of_code_how/"><i>reddit</i> (2)</a></li>
+            <li><a href="http://www.pouet.net/topic.php?which=8357"><i>pouet</i></a></li>
+            <li><a href="http://tasvideos.org/forum/viewtopic.php?p=289092"><i>TASVideos</i></a></li>
+            <li><a href="http://www.99musik.se/showthread.php?288883-C-snutt-tr%E5den"><i>99music</i></a></li>
+        </ul>
+    </section>
+
+    <section id="literature">
+        <h1>Literature</h1>
+        <ul>
+            <li><a href="http://arxiv.org/abs/1112.1368"><i>Discovering novel computer music techniques by exploring the space of short computer programs</i></a></li>
+            <li><a href="http://en.wikibooks.org/wiki/Sound_Synthesis_Theory">Wikibooks: <i>Sound Synthesis Theory</i></a></li>
+            <li><a href="http://www.soundonsound.com/sos/Mar03/articles/synthsecrets47.asp?print=yes"><i>Synth Secrets – Synthesizing Strings • PWM & String Sounds</i></a></li>
+            <li><a href="http://ocw.mit.edu/courses/music-and-theater-arts/21m-380-music-and-technology-algorithmic-and-generative-music-spring-2010/readings-and-listening/"><abbr title="Massachusetts Institute of Technology">MIT</abbr> OpenCourseWare: <i>Music and Technology: Algorithmic and Generative Music</i>, Readings and Listening</a></li>
+        </ul>
+    </section>
+</section>
